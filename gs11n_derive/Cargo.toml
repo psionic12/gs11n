@@ -9,7 +9,6 @@ repository = "https://github.com/psionic12/gs11n"
 proc-macro = true
 
 [dependencies]
-gs11n_derive_internals = { path = "../gs11n_derive_internals" }
 syn = "1.0.74"
 quote = "1.0.9"
 lazy_static = "1.4.0"
