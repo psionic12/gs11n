@@ -5,19 +5,19 @@
 
  The minimum Rust version required to use GS11N is 1.57.0
 
- ```ignore
+ ```
  #[derive(GS11N, Default)]
  struct Orc {
- #[serialized(0)]
- health: usize,
- #[serialized(1)]
- mana: usize,
+   #[serialized(0)]
+   health: usize,
+   #[serialized(1)]
+   mana: usize,
  }
  ```
 
  then serialize and deserialize it:
- ```ignore
- let encoder = Encoder::from(&Orc);
+ ```
+ let encoder = Encoder::from(&orc);
  let buffer = encoder.encode();
 
  let decoder = Decoder::from_data(buffer);
@@ -37,13 +37,13 @@
  3. Prefab Loader: you can offer a prefab loader when create a decoder, in which you can
  bind GS11N to your resources system.
  4. You can use to serialize a type as a whole, usually some common types, to simplify the code:
- ```ignore
+ ```
  #[derive(PartialEq, Debug, GS11N, Default)]
  #[compact]
  struct Color {
-     r: u8,
-     g: u8,
-     b: u8,
+   r: u8,
+   g: u8,
+   b: u8,
  };
  ```
  notice that is you choose to do this, the encoded date will not compatible if fields are added or removed
