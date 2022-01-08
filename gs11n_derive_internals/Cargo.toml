@@ -1,0 +1,12 @@
+[package]
+name = "gs11n_derive_internals"
+version = "0.1.0"
+edition = "2018"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/psionic12/gs11n"
+
+[dependencies]
+syn = "1.0.74"
+quote = "1.0.9"
+proc-macro2 = "1.0.27"
+convert_case = "0.4.0"
