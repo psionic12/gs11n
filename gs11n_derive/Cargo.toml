@@ -3,6 +3,7 @@ name = "gs11n_derive"
 version = "0.1.0"
 edition = "2018"
 license = "MIT OR Apache-2.0"
+description = "A varint serialization framework for game developing "
 repository = "https://github.com/psionic12/gs11n"
 
 [lib]
