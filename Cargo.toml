@@ -1,0 +1,7 @@
+[workspace]
+
+members = [
+    "gs11n",
+    "gs11n_derive",
+    "gs11n_derive_internals"
+]
