@@ -149,7 +149,7 @@ fn serialization_test() {
     ];
     assert_eq!(real, expected);
 
-    let decoder = Decoder::from_data(real);
+    let decoder = Decoder::from_data(real.as_slice());
     let foo2 = decoder.decode::<Foo>().unwrap();
     assert_eq!(foo.f_0, foo2.f_0);
     assert_eq!(foo.f_1, foo2.f_1);

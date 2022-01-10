@@ -173,20 +173,20 @@ impl<'a> DecodeContext<'a> {
 }
 
 pub struct Decoder<'a> {
-    buf: Vec<u8>,
+    buf: &'a [u8],
     ctx: DecodeContext<'a>,
 }
 
 impl<'a> Decoder<'a> {
     /// Create a decoder from a given data buffer
-    pub fn from_data(v: Vec<u8>) -> Self {
-        Self::from_data_with_preloader(v, &DEFAULT_PREFAB_LOADER)
+    pub fn from_data(data: &'a [u8]) -> Self {
+        Self::from_data_with_preloader(data, &DEFAULT_PREFAB_LOADER)
     }
 
     /// Create a decoder from a given data buffer, and a prefab loader
-    pub fn from_data_with_preloader(v: Vec<u8>, prefab_loader: &'a dyn PrefabLoader) -> Self {
+    pub fn from_data_with_preloader(data: &'a [u8], prefab_loader: &'a dyn PrefabLoader) -> Self {
         unsafe {
-            let buf = v;
+            let buf = data;
             let bound = buf.as_ptr().add(buf.len());
             Self {
                 buf,

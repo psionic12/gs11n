@@ -128,7 +128,7 @@ fn prefab_test() {
     let result = encoder.encode();
     assert_eq!(result, vec![0b101_00000, 1,]);
 
-    let decoder = Decoder::from_data_with_preloader(result, &prefab_loader);
+    let decoder = Decoder::from_data_with_preloader(result.as_slice(), &prefab_loader);
     let foo = decoder.decode::<Foo>().unwrap();
     assert_eq!(foo.v, prefab_content);
 }

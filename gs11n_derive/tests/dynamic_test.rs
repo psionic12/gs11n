@@ -47,7 +47,7 @@ fn dynamic_test() {
         let b1: Box<dyn ToString> = Box::new(256i32);
         let encoder = Encoder::from(&b1);
         let v = encoder.encode();
-        let decoder = Decoder::from_data(v);
+        let decoder = Decoder::from_data(v.as_slice());
         let b2: Box<dyn ToString> = decoder.decode().unwrap();
         assert_eq!(b2.to_string(), "256");
     }
@@ -56,7 +56,7 @@ fn dynamic_test() {
         let b1: Box<dyn ToString> = Box::new('x');
         let encoder = Encoder::from(&b1);
         let v = encoder.encode();
-        let decoder = Decoder::from_data(v);
+        let decoder = Decoder::from_data(v.as_slice());
         let b2: Box<dyn ToString> = decoder.decode().unwrap();
         assert_eq!(b2.to_string(), "x");
     }

@@ -66,7 +66,7 @@ fn generic_test() {
     let buffer = encoder.encode();
     assert_eq!(buffer, vec![0b110_00000, 0x2, 0b110_00001, 0x1,]);
 
-    let decoder = Decoder::from_data(buffer);
+    let decoder = Decoder::from_data(buffer.as_slice());
     let position2: Position<i32> = decoder.decode().unwrap();
     assert_eq!(position2, position);
 }

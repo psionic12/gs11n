@@ -103,7 +103,7 @@ fn integer_test() {
     assert_eq!(real, expected);
 
     let vec: Vec<u8> = Vec::from(real);
-    let decoder = Decoder::from_data(vec);
+    let decoder = Decoder::from_data(vec.as_slice());
     let decode_ctx = decoder.get_context();
 
     let mut ptr: *const u8 = &real as *const u8;

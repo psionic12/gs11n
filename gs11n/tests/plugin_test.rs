@@ -111,7 +111,7 @@ fn plugin_test() {
             lib.get(b"get_encode_buffer").unwrap();
         let encode_buffer = get_encode_buffer();
 
-        let decoder = Decoder::from_data(encode_buffer);
+        let decoder = Decoder::from_data(encode_buffer.as_slice());
         let b: Box<dyn ToString> = decoder.decode().unwrap();
         assert_eq!(b.to_string(), "256");
     }

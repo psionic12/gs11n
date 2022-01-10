@@ -197,7 +197,7 @@ fn dyn_test() {
         let b1: Box<dyn ToString> = Box::new(256i32);
         let encoder = Encoder::from(&b1);
         let v = encoder.encode();
-        let decoder = Decoder::from_data(v);
+        let decoder = Decoder::from_data(v.as_slice());
         let b2: Box<dyn ToString> = decoder.decode().unwrap();
         assert_eq!(b2.to_string(), "256");
     }
@@ -206,7 +206,7 @@ fn dyn_test() {
         let b1: Box<dyn ToString> = Box::new('x');
         let encoder = Encoder::from(&b1);
         let v = encoder.encode();
-        let decoder = Decoder::from_data(v);
+        let decoder = Decoder::from_data(v.as_slice());
         let b2: Box<dyn ToString> = decoder.decode().unwrap();
         assert_eq!(b2.to_string(), "x");
     }
@@ -217,7 +217,7 @@ fn non_dyn_test() {
     let box_i = Box::new(1);
     let encoder = Encoder::from(&box_i);
     let v = encoder.encode();
-    let decoder = Decoder::from_data(v);
+    let decoder = Decoder::from_data(v.as_slice());
     let box_j: Box<i32> = decoder.decode().unwrap();
     assert_eq!(*box_i, *box_j);
     assert_ne!(&*box_i as *const i32, &*box_j as *const i32);

@@ -10,7 +10,7 @@ fn map_test() {
     let encoder = Encoder::from(&hash_map);
     let encode_result = encoder.encode();
 
-    let decoder = Decoder::from_data(encode_result);
+    let decoder = Decoder::from_data(encode_result.as_slice());
     let decode_map: BTreeMap<u32, String> = decoder.decode().unwrap();
 
     assert_eq!(hash_map.len(), decode_map.len());
