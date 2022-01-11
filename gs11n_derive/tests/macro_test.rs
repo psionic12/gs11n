@@ -53,6 +53,8 @@ struct Foo {
     f_7: Color,
     #[serialized(8)]
     f_8: String,
+    #[serialized(9)]
+    f_9: [u32; 3],
     #[serialized(30)]
     f_30: u16,
     #[serialized(31)]
@@ -75,6 +77,7 @@ fn serialization_test() {
             b: 255,
         },
         f_8: String::from("test"),
+        f_9: [1, 2, 3],
         f_30: 0,
         f_31: 0x80,
     };
@@ -138,6 +141,13 @@ fn serialization_test() {
         0x65,
         0x73,
         0x74,
+        // f_9
+        0b111_01001,
+        4,
+        3,
+        1,
+        2,
+        3,
         // f_30
         0b110_11110,
         0x0,
@@ -160,6 +170,7 @@ fn serialization_test() {
     assert_eq!(foo.f_6, foo2.f_6);
     assert_eq!(foo.f_7, foo2.f_7);
     assert_eq!(foo.f_8, foo2.f_8);
+    assert_eq!(foo.f_9, foo2.f_9);
     assert_eq!(foo.f_30, foo2.f_30);
     assert_eq!(foo.f_31, foo2.f_31);
 }

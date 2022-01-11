@@ -71,7 +71,7 @@ impl<'a> Builder<'a> {
 
             decode_enum_items.push(quote! {
                 #id => {
-                            let v = #element_ty::decode(ptr, ctx)?;
+                            let v = <#element_ty>::decode(ptr, ctx)?;
                             Ok(Self::#element_name(v))
                         }
             });
@@ -128,7 +128,7 @@ impl<'a> Builder<'a> {
                 });
 
                 decode_stmts.push(quote! {
-                    v.#field_name = #field_ty::decode(ptr, ctx)?;
+                    v.#field_name = <#field_ty>::decode(ptr, ctx)?;
                 })
             } else {
                 encode_field_stmts.push(quote! {
