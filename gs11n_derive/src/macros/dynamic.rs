@@ -149,7 +149,7 @@ pub fn expand_impl(mut impl_input: ItemImpl) -> TokenStream {
             use gs11n::Serialization;
             use gs11n::unsigned::EncodeSize;
             self.record(meta_data.get(0));
-            meta_data.size = meta_data.get(0).size + Self:: GS11N_TYPE_ID.size();
+            meta_data.size = meta_data.get(0).size + Self:: GS11N_TYPE_ID.varint_size();
         }
     });
 

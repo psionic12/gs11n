@@ -55,7 +55,7 @@ macro_rules! s11n_for_signed {
 
             fn record(&self, meta_data: &mut Metadata) {
                 let zigzag = (*self).zigzag();
-                let size = zigzag.size();
+                let size = zigzag.varint_size();
                 meta_data.size = size
             }
         }

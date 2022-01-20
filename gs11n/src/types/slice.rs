@@ -26,7 +26,7 @@ fn encode_slice<S: Serialization>(value: &[S], ptr: &mut *mut u8, meta_data: &mu
 }
 
 fn record_slice<S: Serialization>(value: &[S], meta_data: &mut Metadata) {
-    let mut size = value.len().size();
+    let mut size = value.len().varint_size();
     if S::WIRE_TYPE.is_fixed_type() {
         size += value.len() * std::mem::size_of::<S>();
     } else {

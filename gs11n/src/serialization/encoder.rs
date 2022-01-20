@@ -61,7 +61,7 @@ pub fn size_of_field<S: Serialization>(id: usize, metadata: &mut Metadata) -> us
     size += metadata.size;
     if S::WIRE_TYPE == WireType::LengthDelimited {
         // LengthDelimited type has a size followed by wired_id
-        size += metadata.size.size();
+        size += metadata.size.varint_size();
     }
     size
 }
@@ -71,7 +71,7 @@ pub fn size_of_wired_id(id: usize) -> usize {
     if likely(id < 0x1F) {
         1
     } else {
-        (id - 0x1E).size() + 1
+        (id - 0x1E).varint_size() + 1
     }
 }
 

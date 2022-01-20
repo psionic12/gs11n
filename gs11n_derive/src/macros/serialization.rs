@@ -89,7 +89,7 @@ impl<'a> Builder<'a> {
                    #(#record_enum_items)*
                 }
                 let child_size = meta_data.get(0).size;
-                meta_data.size = child_size.size() + child_size;
+                meta_data.size = child_size.varint_size() + child_size;
             },
             quote! {
                 let id = usize::decode(ptr, ctx)?;

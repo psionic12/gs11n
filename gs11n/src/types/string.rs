@@ -17,7 +17,7 @@ fn encode_str(str: &str, ptr: &mut *mut u8) {
 }
 
 fn record_str(str: &str, meta_data: &mut Metadata) {
-    let mut size = str.len().size();
+    let mut size = str.len().varint_size();
     size += str.len() * std::mem::size_of::<u8>();
     meta_data.size = size;
 }

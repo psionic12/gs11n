@@ -36,7 +36,7 @@ where
             size += meta_data.get(i + 1).size;
             i += 2;
         }
-        meta_data.size = size + self.len().size();
+        meta_data.size = size + self.len().varint_size();
     }
 }
 
@@ -90,7 +90,7 @@ where
             size += meta_data.get(i + 1).size;
             i += 2;
         }
-        meta_data.size = size + self.len().size();
+        meta_data.size = size + self.len().varint_size();
     }
 }
 

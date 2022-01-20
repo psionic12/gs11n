@@ -132,7 +132,7 @@ impl ToString for i32 {
         use gs11n::unsigned::EncodeSize;
         use gs11n::Serialization;
         self.record(meta_data.get(0));
-        meta_data.size = meta_data.get(0).size + Self::GS11N_TYPE_ID.size();
+        meta_data.size = meta_data.get(0).size + Self::GS11N_TYPE_ID.varint_size();
     }
 }
 
@@ -166,7 +166,7 @@ impl ToString for char {
         use gs11n::unsigned::EncodeSize;
         use gs11n::Serialization;
         self.record(meta_data.get(0));
-        meta_data.size = meta_data.get(0).size + Self::GS11N_TYPE_ID.size();
+        meta_data.size = meta_data.get(0).size + Self::GS11N_TYPE_ID.varint_size();
     }
 }
 

@@ -28,7 +28,7 @@ impl<S: Serialization> Serialization for Option<S> {
             Some(v) => {
                 v.record(meta_data.get(0));
                 let element_size = meta_data.get(0).size;
-                element_size.size() + element_size
+                element_size.varint_size() + element_size
             }
             None => 1,
         };

@@ -7,13 +7,13 @@ use crate::{DeSerialization, Serialization, WireTypeTrait};
 use std::mem::size_of;
 
 pub trait EncodeSize {
-    fn size(&self) -> usize;
+    fn varint_size(&self) -> usize;
     fn encode_raw(&self, ptr: &mut *mut u8);
 }
 macro_rules! s11n_for_unsigned {
         ($($t:ty)*) => ($(
         impl EncodeSize for $t {
-            fn size(&self) -> usize {
+            fn varint_size(&self) -> usize {
                 let value = *self | 0x1; // avoid value == 0
                 let bits = (size_of::<Self>() * 8) as u32;
                 // Revert bit scan.
@@ -63,7 +63,7 @@ macro_rules! s11n_for_unsigned {
             }
 
             fn record(&self, meta_data: &mut Metadata) {
-                meta_data.size = self.size()
+                meta_data.size = self.varint_size()
             }
         }
 

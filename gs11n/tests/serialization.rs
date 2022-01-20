@@ -48,57 +48,57 @@ fn integer_test() {
     let n1 = 0u32;
     expected[0] = 0x0u8;
     n1.encode(ptr, &mut meta);
-    assert_eq!(n1.size(), 1);
+    assert_eq!(n1.varint_size(), 1);
 
     let n2 = 0xffffffffu32;
     expected[1..=5].copy_from_slice(&[0xffu8, 0xffu8, 0xffu8, 0xffu8, 0xfu8]);
     n2.encode(ptr, &mut meta);
-    assert_eq!(n2.size(), 5);
+    assert_eq!(n2.varint_size(), 5);
 
     let n3 = 0b0111_1111_0111_1111_0111_1111_0111_1111_u32;
     expected[6..=10].copy_from_slice(&[0xFF, 0xFE, 0xFD, 0xFB, 0x7]);
     n3.encode(ptr, &mut meta);
-    assert_eq!(n3.size(), 5);
+    assert_eq!(n3.varint_size(), 5);
 
     let n4 = 0b0111_1111_0111_1111_u16;
     expected[11..=13].copy_from_slice(&[0xFF, 0xFE, 0x1]);
     n4.encode(ptr, &mut meta);
-    assert_eq!(n4.size(), 3);
+    assert_eq!(n4.varint_size(), 3);
 
     let n5 = -1;
     expected[14] = 0x1;
     n5.encode(ptr, &mut meta);
-    // assert_eq!(n5.size(), 1);
+    // assert_eq!(n5.varint_size(), 1);
 
     let n6 = 1;
     expected[15] = 0x2;
     n6.encode(ptr, &mut meta);
-    // assert_eq!(n6.size(), 1);
+    // assert_eq!(n6.varint_size(), 1);
 
     let n7 = 0x79u8;
     expected[16] = 0x79;
     n7.encode(ptr, &mut meta);
-    assert_eq!(n7.size(), 1);
+    assert_eq!(n7.varint_size(), 1);
 
     let n8 = 0x80u8;
     expected[17..=18].copy_from_slice(&[0x80, 0x1]);
     n8.encode(ptr, &mut meta);
-    assert_eq!(n8.size(), 2);
+    assert_eq!(n8.varint_size(), 2);
 
     let n9: f32 = std::f32::consts::PI;
     expected[19..=22].copy_from_slice(&[0xDB, 0xF, 0x49, 0x40]);
     n9.encode(ptr, &mut meta);
-    // assert_eq!(n9.size(), 4);
+    // assert_eq!(n9.varint_size(), 4);
 
     let n10: f64 = std::f64::consts::PI;
     expected[23..=30].copy_from_slice(&[0x18, 0x2D, 0x44, 0x54, 0xFB, 0x21, 0x9, 0x40]);
     n10.encode(ptr, &mut meta);
-    // assert_eq!(n10.size(), 8);
+    // assert_eq!(n10.varint_size(), 8);
 
     let n11: char = '💖';
     expected[31..=34].copy_from_slice(&[0x96, 0xF4, 0x1, 0x0]);
     n11.encode(ptr, &mut meta);
-    // assert_eq!(n11.size(), 4);
+    // assert_eq!(n11.varint_size(), 4);
 
     assert_eq!(real, expected);
 
