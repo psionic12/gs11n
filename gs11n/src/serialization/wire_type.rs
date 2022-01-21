@@ -61,10 +61,9 @@ impl<S: Serialization, const ID: u8> WiredIdConstant<S, ID> {
 }
 
 const fn wired_id_constant_from(id: u8, wire_type: WireType) -> u8 {
-    // Unstable feature panicking in constant functions
-    // if id > 0b11111 {
-    //     panic!("wired id constant is used for comman use, and only support id which is less than 32");
-    // }
+    if id > 0b11111 {
+        panic!("wired id constant is used for common use, and only support id which is less than 32");
+    }
     ((wire_type as u8) << 5) | id
 }
 
