@@ -40,8 +40,8 @@ fn zigzag_test() {
 fn integer_test() {
     let mut meta = Metadata::default();
 
-    let mut expected: [u8; 35] = [0; 35];
-    let mut real: [u8; 35] = [0; 35];
+    let mut expected: [u8; 41] = [0; 41];
+    let mut real: [u8; 41] = [0; 41];
     let mut ptr = &mut real as *mut u8;
     let ptr = &mut ptr;
 
@@ -102,8 +102,7 @@ fn integer_test() {
 
     assert_eq!(real, expected);
 
-    let vec: Vec<u8> = Vec::from(real);
-    let decoder = Decoder::from_data(vec.as_slice());
+    let decoder = Decoder::from_data(&real);
     let decode_ctx = decoder.get_context();
 
     let mut ptr: *const u8 = &real as *const u8;

@@ -72,7 +72,7 @@ macro_rules! s11n_for_floating {
                     let mut value = MaybeUninit::<Self>::uninit();
                     let dst : *mut u8 = value.as_mut_ptr() as *mut u8;
                     let size = std::mem::size_of::<$t>();
-                    ctx.bounds_checker.check_bounds(dst)?;
+                    ctx.bounds_checker.check_bounds(p)?;
                     std::ptr::copy_nonoverlapping(p, dst, size);
                     let mut value = value.assume_init();
                     if cfg!(target_endian = "big") {
