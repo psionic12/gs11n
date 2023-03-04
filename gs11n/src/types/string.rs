@@ -41,13 +41,13 @@ impl DeSerialization for String {
         let counts = usize::decode(ptr, ctx)?;
 
         let mut string = String::new();
-        let vec: &mut Vec<u8> = unsafe { string.as_mut_vec() };
-
         unsafe {
+            let vec: &mut Vec<u8> = string.as_mut_vec();
+            vec.reserve(counts);
+            vec.set_len(counts);
             let start = *ptr;
             let end = (start).add(counts * size_of::<u8>());
             ctx.bounds_checker.check_bounds(end.sub(1))?;
-            vec.resize_with(counts, || MaybeUninit::uninit().assume_init());
             std::ptr::copy_nonoverlapping(start as *mut u8, vec.as_mut_ptr(), counts);
             *ptr = end;
             Ok(string)

@@ -111,10 +111,10 @@ impl<'a, S: Serialization> Encoder<'a, S> {
         let total_size = meta_data.size;
         self.meta_data.replace(meta_data);
 
-        let mut buf = Vec::new();
-        buf.resize_with(total_size, || unsafe {
-            MaybeUninit::uninit().assume_init()
-        });
+        let mut buf = Vec::with_capacity(total_size);
+        unsafe {
+            buf.set_len(total_size);
+        }
         let mut ptr = buf.as_mut_ptr();
 
         let mut meta_data = self.meta_data.take();
