@@ -1,6 +1,6 @@
 [package]
 name = "gs11n"
-version = "0.3.0"
+version = "0.3.1"
 edition = "2018"
 description = "Utililties need for GS11N"
 license = "MIT OR Apache-2.0"
